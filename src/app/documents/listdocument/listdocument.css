@@ -1,0 +1,11 @@
+table {
+  width: 100%;
+}
+
+.action-btn {
+  padding: 0 !important;
+}
+.action-btn:hover {
+  background-color: azure !important;
+  transform: scale(1.15);
+}

@@ -1,0 +1,45 @@
+<div class="container my-4">
+  <h2>Ajouter Document</h2>
+
+  <form>
+    <div class="mb-3">
+      <label class="form-label">Titre :</label>
+      <input type="text" [(ngModel)]="createdoc.title" name="title" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Description :</label>
+      <textarea [(ngModel)]="createdoc.description" name="description" class="form-control" rows="3"
+        required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fichier :</label>
+      <input type="file" (change)="onFileSelected($event)" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Visibilité :</label>
+      <select [(ngModel)]="createdoc.visibility" name="visibility" class="form-select" required>
+        <option value="PUBLIC">Public</option>
+        <option value="PRIVE">Private</option>
+        <option value="RESTREINT">Restreint</option>
+      </select>
+    </div>
+    @if(createdoc.visibility === 'RESTREINT'){
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Utilisateurs autorisés :</mat-label>
+      <mat-select multiple name="usreshasaccess" [(ngModel)]="createdoc.usersHasAccess">
+        @for (u of getVisibleUsers(); track u.id) {
+        <mat-option [value]="u.id">
+          {{ u.firstname }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    }
+    <button class="btn btn-success me-2" type="submit" (click)="ajouter(createdoc)">ajouter</button>
+    <button class="btn btn-secondary" type="button" routerLink="/documents">Annuler</button>
+
+  </form>
+</div>

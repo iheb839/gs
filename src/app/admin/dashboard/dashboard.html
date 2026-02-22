@@ -1,0 +1,67 @@
+<div class="container my-4">
+  <div class="row g-4">
+    <div class="col-lg-6">
+      <h3 class="mb-4">📊 Stats des Utilisateurs</h3>
+      <div class="row">
+        @for (user of usersStats; track user.email) {
+        <div class="col-6 mb-3">
+          <div class="card shadow-sm h-100 border-0">
+            <div class="card-body">
+              <h6 class="text-primary text-truncate">
+                {{ user.email }}
+              </h6>
+              <p class="mb-1">📁 <strong>Total :</strong> {{ user.totalDocs }}</p>
+              <p class="mb-1 text-success">🌍 Public : {{ user.publicDocs }}</p>
+              <p class="mb-1 text-warning">🔒 Privé : {{ user.privateDocs }}</p>
+              <p class="mb-0 text-danger">🚫 Restreint : {{ user.restrictedDocs }}</p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <h3 class="mb-4">📂 Statistiques des Documents</h3>
+      <div class="row g-4">
+        <div class="col-md-6 col-sm-6">
+          <div class="card shadow-sm border-0 text-center h-100">
+            <div class="card-body">
+              <mat-icon class="mb-2 text-dark">folder</mat-icon>
+              <h6 class="text-muted">Total Documents</h6>
+              <h2 class="fw-bold">{{ stats.totalDocs }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="card shadow-sm border-start border-success border-4 text-center h-100">
+            <div class="card-body">
+              <mat-icon class="mb-2 text-success">public</mat-icon>
+              <h6 class="text-success">Public</h6>
+              <h2 class="fw-bold text-success">{{ stats.publicDocs }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="card shadow-sm border-start border-primary border-4 text-center h-100">
+            <div class="card-body">
+              <mat-icon class="mb-2 text-primary">lock</mat-icon>
+              <h6 class="text-primary">Privé</h6>
+              <h2 class="fw-bold text-primary">{{ stats.privateDocs }}</h2>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-sm-6">
+          <div class="card shadow-sm border-start border-warning border-4 text-center h-100">
+            <div class="card-body">
+              <mat-icon class="mb-2 text-warning">block</mat-icon>
+              <h6 class="text-warning">Restreint</h6>
+              <h2 class="fw-bold text-warning">{{ stats.restrictedDocs }}</h2>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

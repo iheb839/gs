@@ -1,0 +1,56 @@
+<div class="container my-4">
+    <h2>Ajouter user</h2>
+
+    <form>
+
+        <div class="mb-3">
+            <label class="form-label">Nom :</label>
+            <input type="text" [(ngModel)]="user.firstname" name="firstname" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Prenom :</label>
+            <input type="text" [(ngModel)]="user.lastname" name="lastname" class="form-control" required>
+        </div>
+
+        <select [(ngModel)]="user.departement"
+        name="departement"
+        class="form-select"
+        required>
+
+    <option value="" disabled selected>
+        Choisir un département
+    </option>
+
+    @for (dep of departements; track dep) {
+        <option [value]="dep">
+            {{ dep }}
+        </option>
+    }
+
+</select>
+
+
+        <div class="mb-3">
+            <label class="form-label">Role :</label>
+            <select [(ngModel)]="user.role" name="role" class="form-control" required>
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email :</label>
+            <input type="email" [(ngModel)]="user.email" name="email" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Password :</label>
+            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" required>
+        </div>
+
+        <button class="btn btn-success me-2" type="submit" (click)="addUser(user)">Ajouter</button>
+        <a class="btn btn-secondary" type="button" routerLink="/users">Annuler</a>
+
+    </form>
+</div>

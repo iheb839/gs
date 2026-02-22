@@ -1,0 +1,24 @@
+<div class="confirm-container">
+
+  <!-- Header -->
+  <div class="confirm-header">
+    <h2>{{ data.title || 'Confirmation' }}</h2>
+  </div>
+
+  <!-- Body -->
+  <div class="confirm-body">
+    <p>{{ data.message }}</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="confirm-footer">
+    <button class="btn-cancel" (click)="cancel()">
+      {{ data.cancelText || 'Annuler' }}
+    </button>
+
+    <button class="btn-confirm" (click)="confirm()">
+      {{ data.confirmText || 'Confirmer' }}
+    </button>
+  </div>
+
+</div>

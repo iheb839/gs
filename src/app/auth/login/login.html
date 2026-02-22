@@ -1,0 +1,27 @@
+<div class="vh-100 d-flex justify-content-center align-items-center bg-light">
+  <div class="card shadow p-4 w-100" style="max-width: 400px;">
+    <div class="text-center mb-4">
+      <h2 class="text-primary fw-bold">Smart Archive</h2>
+      <p class="text-muted">Connectez-vous pour accéder à vos documents</p>
+    </div>
+    <form>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email :</label>
+        <input type="email" id="email" name="email" class="form-control" placeholder="ex: user@cni.tn"
+          [(ngModel)]="email">
+      </div>
+
+      <div class="mb-3">
+        <label for="password" class="form-label">Mot de passe :</label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="Votre mot de passe"
+          [(ngModel)]="password">
+      </div>
+
+      <button type="button" class="btn btn-primary w-100 mb-3" (click)="login()">Se connecter</button>
+
+      <div class="text-center">
+        <a routerLink="/updatepassword/:email" class="text-primary">Mot de passe oublié ?</a>
+      </div>
+    </form>
+  </div>
+</div>

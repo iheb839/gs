@@ -1,0 +1,46 @@
+<div class="container my-4">
+  <h2 class="mb-4 text-dark">👥Liste des Users</h2>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+
+    <button class="btn btn-info" routerLink="/addUser">
+      Ajouter User
+    </button>
+    <input type="text" class="form-control w-25" placeholder="🔍 Rechercher user..." [(ngModel)]="searchText"
+      (input)="onSearch()" />
+  </div>
+  <table class="table">
+    <thead class="text-center text-dark">
+      <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse email</th>
+        <th>Role</th>
+        <th>Department</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody class="text-center">
+      @for (user of filteredUsers; track user.id) {
+      <tr>
+
+        <td>{{ user.firstname }}</td>
+        <td>{{ user.lastname }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.role }}</td>
+        <td>{{ user.departement }}</td>
+        <td class="text-center">
+          <a class="btn" [routerLink]="['/updateuser', user.id]"> <mat-icon
+              style="color: rgb(120, 95, 95);">edit</mat-icon></a>
+          <button class="btn" (click)="deleteUser(user.id)"><mat-icon style="color: red;">delete</mat-icon></button>
+        </td>
+      </tr>
+      }
+      @if (filteredUsers.length === 0) {
+      <tr>
+        <td colspan="7" class="text-center text-muted py-3">Aucun utilisateur trouvé</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

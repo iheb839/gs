@@ -1,0 +1,49 @@
+.confirm-container {
+  width: 100%;
+}
+
+.confirm-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid #eee;
+}
+
+.confirm-header h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.confirm-body {
+  padding: 20px;
+  font-size: 14px;
+  color: #444;
+}
+
+.confirm-footer {
+  padding: 15px 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  border-top: 1px solid #eee;
+}
+
+.btn-cancel {
+  background: #f1f1f1;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-confirm {
+  background: #d32f2f;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-confirm:hover {
+  background: #b71c1c;
+}

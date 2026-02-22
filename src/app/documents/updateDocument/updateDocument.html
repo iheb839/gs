@@ -1,0 +1,48 @@
+<div class="container my-4">
+  <h2>Modifier Document</h2>
+
+  <form (ngSubmit)="updatedocument()">
+
+    <div class="mb-3">
+      <label class="form-label">Titre :</label>
+      <input type="text" [(ngModel)]="doc.title" name="title" class="form-control" required>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Description :</label>
+      <textarea [(ngModel)]="doc.description" name="description" class="form-control" rows="3" required></textarea>
+    </div>
+
+   <div class="mb-3">
+  <label class="form-label">Fichier :</label>
+  <input type="file"(change)="onFileSelected($event)"class="form-control">
+</div>
+
+
+    <div class="mb-3">
+      <label class="form-label">Visibilité :</label>
+      <select [(ngModel)]="doc.visibility" name="visibilite" class="form-select" required>
+        <option value="PUBLIC">Public</option>
+        <option value="PRIVE">Private</option>
+        <option value="RESTREINT">Restreint</option>
+      </select>
+    </div>
+
+    @if(doc.visibility === 'RESTREINT'){
+    <mat-form-field class="w-100" appearance="outline">
+      <mat-label>Utilisateurs autorisés :</mat-label>
+      <mat-select multiple name="usreshasaccess" [(ngModel)]="selectedUserIds">
+        @for (u of getVisibleUsers(); track u.id) {
+        <mat-option [value]="u.id">
+          {{ u.firstname }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    }
+    <button class="btn btn-success me-2" type="submit">Modifier</button>
+    <button class="btn btn-secondary" type="button" (click)="cancel()">Annuler</button>
+
+  </form>
+</div>
