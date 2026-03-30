@@ -3,10 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/authentification';
 import { ToastrService } from 'ngx-toastr';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, RouterLink],
+  imports: [FormsModule, RouterLink, MatIcon],
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
 })
@@ -21,12 +22,8 @@ export class Login {
     this.authService.login(this.email, this.password).subscribe({
       next: (response) => {
         this.authService.saveUserData(response);
-          this.toastrService.success('Login successful!', 'Success');
-        if (this.authService.isAdmin()) {
-          this.router.navigate(['/users']);
-        } else {
+        this.toastrService.success('Login successful!', 'Success');
           this.router.navigate(['/documents']);
-        }
       },
       error: () => {
         this.toastrService.error('Invalid email or password', 'Login Failed');

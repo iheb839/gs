@@ -1,0 +1,151 @@
+.page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  padding: 20px;
+}
+
+.custom-card {
+  background: white;
+  width: 100%;
+  max-width: 800px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.card-header {
+  text-align: center;
+  padding: 40px 20px 20px;
+}
+
+.icon-circle {
+  background-color: #e7f1ff;
+  color: #0d6efd;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.icon-circle mat-icon {
+  font-size: 32px;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #333;
+  font-weight: 700;
+}
+
+.card-header p {
+  margin: 5px 0 0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.card-body {
+  padding: 30px 40px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #555;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input-box {
+  display: flex;
+  align-items: center;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 0 12px;
+  transition: all 0.3s ease;
+}
+
+.input-box mat-icon {
+  color: #adb5bd;
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.input-box input,
+.input-box select {
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  appearance: none; 
+}
+
+.input-box:focus-within {
+  background-color: #fff;
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.1);
+}
+
+.input-box:focus-within mat-icon {
+  color: #0d6efd;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #f1f1f1;
+}
+
+.btn-cancel {
+  background-color: white;
+  color: #666;
+  border: 1px solid #e0e0e0;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.btn-cancel:hover {
+  background-color: #f8f9fa;
+  border-color: #ccc;
+  color: #333;
+}
+
+.btn-save {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  color: white;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-save:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(13, 110, 253, 0.3);
+}

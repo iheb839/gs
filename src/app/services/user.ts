@@ -16,9 +16,10 @@ export class UserService {
     const connectedUserId = this.authService.getConnectedUserId();
     return this.http.post<User>(this.url + `/add?adminId=${connectedUserId}`, user);
   }
-
+  
   getAllUsers(): Observable<UserDto[]> {
-    return this.http.get<UserDto[]>(this.url);
+    const connectedUserId = this.authService.getConnectedUserId();
+    return this.http.get<UserDto[]>(this.url + `?adminId=${connectedUserId}`);
   }
 
   getUserbyId(id: number): Observable<UserDto> {
@@ -29,10 +30,8 @@ export class UserService {
     const connectedUserId = this.authService.getConnectedUserId();
     return this.http.put<UserDto>(this.url + `/update/${id}?userConnectId=${connectedUserId}`, user);
   }
-
   deleteUser(id: number): Observable<void> {
     const connectedUserId = this.authService.getConnectedUserId();
     return this.http.delete<void>(this.url + `/delete/${id}?adminId=${connectedUserId}`);
   }
-
 }

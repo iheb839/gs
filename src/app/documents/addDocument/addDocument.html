@@ -1,45 +1,85 @@
-<div class="container my-4">
-  <h2>Ajouter Document</h2>
-
-  <form>
-    <div class="mb-3">
-      <label class="form-label">Titre :</label>
-      <input type="text" [(ngModel)]="createdoc.title" name="title" class="form-control" required>
-    </div>
-    <div class="mb-3">
-      <label class="form-label">Description :</label>
-      <textarea [(ngModel)]="createdoc.description" name="description" class="form-control" rows="3"
-        required></textarea>
+<div class="page-wrapper">
+  <div class="custom-card">
+    
+    <div class="card-header">
+      <div class="icon-circle">
+        <mat-icon>upload_file</mat-icon>
+      </div>
+      <h3>Ajouter un Document</h3>
+      <p>Partagez un nouveau fichier</p>
     </div>
 
-    <div class="mb-3">
-      <label class="form-label">Fichier :</label>
-      <input type="file" (change)="onFileSelected($event)" class="form-control" required>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Titre du document</label>
+            <div class="input-box">
+              <mat-icon>title</mat-icon>
+              <input type="text" [(ngModel)]="createdoc.title" name="title" placeholder="Ex: Rapport Annuel" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Visibilité</label>
+            <div class="input-box">
+              <mat-icon>visibility</mat-icon>
+              <select [(ngModel)]="createdoc.visibility" name="visibility" required>
+                <option value="PUBLIC">🌍 Public</option>
+                <option value="PRIVE">🔒 Privé</option>
+                <option value="RESTREINT">👥 Restreint</option>
+              </select>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <label>Description</label>
+            <div class="input-box" style="align-items: flex-start;">
+              <mat-icon style="margin-top: 12px;">description</mat-icon>
+              <textarea [(ngModel)]="createdoc.description" name="description" rows="3" placeholder="Décrivez le contenu..." required></textarea>
+            </div>
+          </div>
+          <div class="col-12 mb-3">
+            <label>Fichier</label>
+            <div class="file-upload-wrapper">
+              <input type="file" id="fileUpload" (change)="onFileSelected($event)" style="display: none;" required>
+              <label for="fileUpload"
+                class="file-upload-label d-flex flex-column align-items-center justify-content-center p-4 rounded-3 
+                border border-2 border-dashed">
+                <mat-icon class="text-muted mb-2" style="font-size: 23px;">cloud_upload</mat-icon>
+                <span class="fw-bold text-dark">Cliquez pour parcourir</span>
+                <span class="text-muted small">ou glissez-déposez un fichier ici</span>
+
+                <!-- Afficher le nom du fichier sélectionné -->
+                <span *ngIf="selectedFileName" class="mt-2 text-primary">{{ selectedFileName }}</span>
+              </label>
+            </div>
+          </div>
+          @if(createdoc.visibility === 'RESTREINT'){
+          <div class="col-12 mb-3">
+            <label>Accès Restreint</label>
+            <div class="mat-select-wrapper">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Sélectionner les utilisateurs</mat-label>
+                <mat-select multiple name="usershasaccess" [(ngModel)]="createdoc.usersHasAccess">
+                  @for (u of allUsers; track u.id) {
+                  <mat-option [value]="u.id">
+                    {{ u.firstname }} {{ u.lastname }}
+                  </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          }
+        </div>
+        <div class="actions">
+          <button type="button" class="btn-cancel" routerLink="/documents">
+            Annuler
+          </button>
+          <button class="btn-save" type="button" (click)="ajouter(createdoc)">
+            <mat-icon>add</mat-icon> Ajouter
+          </button>
+        </div>
+      </form>
     </div>
-
-    <div class="mb-3">
-      <label class="form-label">Visibilité :</label>
-      <select [(ngModel)]="createdoc.visibility" name="visibility" class="form-select" required>
-        <option value="PUBLIC">Public</option>
-        <option value="PRIVE">Private</option>
-        <option value="RESTREINT">Restreint</option>
-      </select>
-    </div>
-    @if(createdoc.visibility === 'RESTREINT'){
-    <mat-form-field class="w-100" appearance="outline">
-      <mat-label>Utilisateurs autorisés :</mat-label>
-      <mat-select multiple name="usreshasaccess" [(ngModel)]="createdoc.usersHasAccess">
-        @for (u of getVisibleUsers(); track u.id) {
-        <mat-option [value]="u.id">
-          {{ u.firstname }}
-        </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    }
-    <button class="btn btn-success me-2" type="submit" (click)="ajouter(createdoc)">ajouter</button>
-    <button class="btn btn-secondary" type="button" routerLink="/documents">Annuler</button>
-
-  </form>
+  </div>
 </div>

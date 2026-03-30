@@ -6,7 +6,6 @@ import { AuthService } from './services/authentification';
 })
 export class RoleGuard {
   constructor(private authService: AuthService) {}
-
   canActivate(route: ActivatedRouteSnapshot): boolean {
   const expectedRoles = route.data['roles'];
     const userRole = this.authService.getUserRole();

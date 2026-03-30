@@ -8,7 +8,7 @@ import { Adddocument } from './documents/addDocument/addDocument';
 import { Updatepassword } from './auth/updatepassword/updatepassword';
 import { Adduser } from './admin/users/adduser/adduser';
 import { Updateuser } from './admin/users/updateuser/updateuser';
-import { Dashboard } from './admin/dashboard/dashboard'; // افترض Guard موجود
+import { Dashboard } from './admin/dashboard/dashboard';
 import { RoleGuard } from './auth-guard';
 
 export const routes: Routes = [
@@ -19,10 +19,9 @@ export const routes: Routes = [
   { path: 'addDocument', component: Adddocument },
   { path: 'updateDocument/:id', component: Updatedocument },
   { path: 'updatepassword/:email', component: Updatepassword },
-  {path: 'users',component: Listuser, canActivate: [RoleGuard], data: { roles: ['ADMIN'] }},
-  {path: 'addUser',component: Adduser,canActivate: [RoleGuard], data: { roles: ['ADMIN'] }},
-  {path: 'updateuser/:id',component: Updateuser,canActivate: [RoleGuard],data: { roles: ['ADMIN'] }},
-  {path: 'dashboard',component: Dashboard,canActivate: [RoleGuard],data: { roles: ['ADMIN'] }},
-  { path: 'adminDashboard', component: Dashboard,canActivate: [RoleGuard],data: { roles: ['ADMIN'] }},
+  {path: 'users',component: Listuser, canActivate: [RoleGuard], data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
+  {path: 'addUser',component: Adduser,canActivate: [RoleGuard], data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
+  {path: 'updateuser/:id',component: Updateuser,canActivate: [RoleGuard],data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
+  { path: 'adminDashboard', component: Dashboard,canActivate: [RoleGuard],data: { roles: ['ADMIN',] }},
    { path: '**', redirectTo: 'login' }
 ];

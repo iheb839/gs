@@ -1,56 +1,104 @@
-<div class="container my-4">
-    <h2>Ajouter user</h2>
+<div class="page-wrapper">
+  <div class="custom-card">
+    
+    <div class="card-header">
+      <div class="icon-circle">
+        <mat-icon>person_add</mat-icon>
+      </div>
+      <h3>Ajouter un Utilisateur</h3>
+      <p>Créer un nouveau compte</p>
+    </div>
 
-    <form>
+    <div class="card-body">
+      <form>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label>Nom</label>
+            <div class="input-box">
+              <mat-icon>badge</mat-icon>
+              <input type="text" [(ngModel)]="user.firstname" name="firstname" placeholder="Nom" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Prénom</label>
+            <div class="input-box">
+              <mat-icon>badge</mat-icon>
+              <input type="text" [(ngModel)]="user.lastname" name="lastname" placeholder="Prénom" required>
+            </div>
+          </div>
+           <div class="col-md-6 mb-3">
+            <label>telephone</label>
+            <div class="input-box">
+              <mat-icon>phone</mat-icon>
+              <input type="text" [(ngModel)]="user.tel" name="tel" placeholder="Téléphone" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Date de naissance</label>
+            <div class="input-box">
+              <mat-icon>date_range</mat-icon>
+              <input type="date" [(ngModel)]="user.dateN" name="dateN" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>genre</label>
+            <div class="input-box">
+              <mat-icon>person</mat-icon>
+              <select [(ngModel)]="user.genre" name="genre" required>
+                <option value="HOMME">HOMME</option>
+                <option value="FEMME">FEMME</option>
+              </select>
+            </div>
+          </div>
 
-        <div class="mb-3">
-            <label class="form-label">Nom :</label>
-            <input type="text" [(ngModel)]="user.firstname" name="firstname" class="form-control" required>
+          <div class="col-md-6 mb-3">
+            <label>Email</label>
+            <div class="input-box">
+              <mat-icon>email</mat-icon>
+              <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email" required>
+            </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Mot de passe</label>
+            <div class="input-box">
+              <mat-icon>lock</mat-icon>
+              <input type="password" [(ngModel)]="user.password" name="password" placeholder="Mot de passe" required>
+            </div>
+          </div>
+          @if(isAdmin()) {
+            <div class="col-md-6 mb-3">
+              <label>Rôle</label>
+              <div class="input-box">
+                <mat-icon>security</mat-icon>
+                <select [(ngModel)]="user.role" name="role" required>
+                  <option value="EMPLOYE">Employé (User)</option>
+                  <option value="AGENT_ADMINISTRATIF">Agent Administratif</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-12 mb-3">
+              <label>Département</label>
+              <div class="input-box">
+                <mat-icon>business</mat-icon>
+                <select [(ngModel)]="user.departement" name="departement" required>
+                  <option value="" disabled selected>Choisir un département</option>
+                  @for (dep of departements; track dep) {
+                    <option [value]="dep">{{ dep }}</option>
+                  }
+                </select>
+              </div>
+            </div>
+          }
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Prenom :</label>
-            <input type="text" [(ngModel)]="user.lastname" name="lastname" class="form-control" required>
+        <div class="actions">
+          <button type="button" class="btn-cancel" routerLink="/users">
+            Annuler
+          </button>
+          <button class="btn-save" type="button" (click)="addUser(user)">
+            <mat-icon>add</mat-icon> Ajouter
+          </button>
         </div>
-
-        <select [(ngModel)]="user.departement"
-        name="departement"
-        class="form-select"
-        required>
-
-    <option value="" disabled selected>
-        Choisir un département
-    </option>
-
-    @for (dep of departements; track dep) {
-        <option [value]="dep">
-            {{ dep }}
-        </option>
-    }
-
-</select>
-
-
-        <div class="mb-3">
-            <label class="form-label">Role :</label>
-            <select [(ngModel)]="user.role" name="role" class="form-control" required>
-                <option value="USER">USER</option>
-                <option value="ADMIN">ADMIN</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Email :</label>
-            <input type="email" [(ngModel)]="user.email" name="email" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Password :</label>
-            <input type="password" [(ngModel)]="user.password" name="password" class="form-control" required>
-        </div>
-
-        <button class="btn btn-success me-2" type="submit" (click)="addUser(user)">Ajouter</button>
-        <a class="btn btn-secondary" type="button" routerLink="/users">Annuler</a>
-
-    </form>
+      </form>
+    </div>
+  </div>
 </div>

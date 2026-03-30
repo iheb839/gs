@@ -1,39 +1,3 @@
-/* import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { CreateDocumentdto, DocumentDto } from '../document';
-import { Observable } from 'rxjs';
-import { AuthService } from './authentification';
-
-@Injectable({
-  providedIn: 'root',
-})
-export class DocumentService {
-
-  url: string = 'http://localhost:8081/documents';
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
-  addDocument(dto: CreateDocumentdto): Observable<DocumentDto> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.post<DocumentDto>(this.url + `/add?userId=${connectedUserId}`, dto);
-  }
-  findById(id: string): Observable<DocumentDto> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.get<DocumentDto>(this.url + `/${id}?userId=${connectedUserId}`);
-  }
-  getAllDocuments(): Observable<DocumentDto[]> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.get<DocumentDto[]>(this.url + `?userId=${connectedUserId}`);
-  }
-  updateDocument(id: number, document: DocumentDto,): Observable<DocumentDto> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.put<DocumentDto>(this.url + `/update/${id}?userId=${connectedUserId}`, document);
-  }
-  delete(id: number): Observable<void> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.delete<void>(`${this.url}/delete/${id}?userId=${connectedUserId}`);
-  }
-
-} */
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -45,32 +9,16 @@ import { AuthService } from './authentification';
   providedIn: 'root',
 })
 export class DocumentService {
-
+  
   url: string = 'http://localhost:8081/documents';
   constructor(private http: HttpClient, private authService: AuthService) { }
-  
-  downloadDocument(docId: number, userId: number) {
-  return this.http.get(`${this.url}/download/${docId}?userId=${userId}`, {
-    responseType: 'blob',
-    headers: { Authorization: `Bearer ${this.authService.getToken()}` }
-  });
-}
  addDocument(formData: FormData, userId: number) {
   return this.http.post<DocumentDto>(`${this.url}/add?userId=${userId}`, formData);
 }
-
   findById(id: string): Observable<DocumentDto> {
     const connectedUserId = this.authService.getConnectedUserId();
     return this.http.get<DocumentDto>(this.url + `/${id}?userId=${connectedUserId}`);
   }
-  /*getAllDocuments(): Observable<DocumentDto[]> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.get<DocumentDto[]>(this.url + `?userId=${connectedUserId}`);
-  }*/
-  /*updateDocument(id: number, document: DocumentDto,): Observable<DocumentDto> {
-    const connectedUserId = this.authService.getConnectedUserId();
-    return this.http.put<DocumentDto>(this.url + `/update/${id}?userId=${connectedUserId}`, document);
-  }*/
   updateDocument(id: number, formData: FormData): Observable<DocumentDto> {
   const connectedUserId = this.authService.getConnectedUserId();
   return this.http.put<DocumentDto>(
@@ -78,7 +26,6 @@ export class DocumentService {
     formData
   );
 }
-
   delete(id: number): Observable<void> {
     const connectedUserId = this.authService.getConnectedUserId();
     return this.http.delete<void>(`${this.url}/delete/${id}?userId=${connectedUserId}`);

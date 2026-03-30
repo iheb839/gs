@@ -1,123 +1,236 @@
-/* Supprimer complètement modal-overlay */
-
-/* Container principal */
-.profile-modal {
+/* --- Overlay (Fond sombre) --- */
+.profile-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 100%;
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1050; /* Au-dessus de tout */
+  backdrop-filter: blur(4px); /* Effet de flou moderne */
+  animation: fadeInOverlay 0.3s ease-out;
 }
 
-/* Header */
-.modal-header {
-  background: linear-gradient(135deg, #1976d2, #1565c0);
-  color: white;
-  padding: 16px 20px;
+/* --- Carte du Modal --- */
+.profile-card {
+  background: white;
+  width: 100%;
+  max-width: 400px; /* Largeur max */
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  animation: slideUp 0.3s ease-out;
+}
+
+/* --- En-tête --- */
+.profile-header {
+  padding: 1.5rem 1.5rem 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-bottom: 1px solid #f0f0f0;
 }
 
-.header-left {
+.profile-header h5 {
+  font-weight: 700;
+  color: #333;
+  margin: 0;
+}
+
+.btn-close-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #999;
+  padding: 5px;
+  border-radius: 50%;
+  transition: background 0.2s;
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
 }
 
-.header-icon {
-  font-size: 26px;
+.btn-close-icon:hover {
+  background-color: #f0f0f0;
+  color: #333;
 }
 
-.close-btn {
-  background: transparent;
-  border: none;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s ease;
+/* --- Corps --- */
+.profile-body {
+  padding: 2rem 1.5rem;
 }
 
-.close-btn:hover {
-  transform: scale(1.15);
+/* --- Avatar / Icône --- */
+.avatar-circle {
+  width: 80px;
+  height: 80px;
+  background-color: #e3f2fd; /* Bleu très clair */
+  color: #1976d2; /* Bleu primaire */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  transition: all 0.3s ease;
 }
 
-/* Body */
-.modal-body {
-  padding: 24px;
+.avatar-circle.editing {
+  background-color: #e8f5e9; /* Vert très clair */
+  color: #2e7d32; /* Vert succès */
 }
 
-.avatar-section {
-  text-align: center;
-  margin-bottom: 20px;
+.avatar-large {
+  font-size: 48px !important;
+  width: 48px;
+  height: 48px;
 }
 
-.avatar-icon {
-  font-size: 65px;
-  color: #1976d2;
+/* --- Textes --- */
+.profile-name {
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
 }
 
-.avatar-section h4 {
-  margin: 10px 0 5px;
+.badge-role {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 0.4rem 1rem;
+  border-radius: 50px;
   font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.role-badge {
-  display: inline-block;
-  padding: 4px 14px;
-  border-radius: 20px;
-  background: #e3f2fd;
-  color: #1976d2;
-  font-size: 13px;
-  font-weight: 600;
-}
-
-/* Infos */
-.info-section {
-  margin-top: 20px;
+/* --- Liste d'infos (Email, Département) --- */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 0;
-  border-bottom: 1px solid #f1f1f1;
-  font-size: 14px;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
 }
 
-.info-item:last-child {
-  border-bottom: none;
+.info-item:hover {
+  background-color: #f9f9f9;
 }
 
-.info-item mat-icon {
+.info-icon {
+  color: #90a4ae;
+  margin-right: 1rem;
+  font-size: 20px;
+}
+
+.info-text {
+  color: #546e7a;
+  font-size: 0.95rem;
+}
+
+/* --- Inputs Personnalisés (Soulignés) --- */
+.form-input-underline {
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  border-radius: 0;
+  background: transparent;
+  padding: 5px 10px;
+  font-weight: 500;
+  color: #333;
+  transition: all 0.3s;
+}
+
+.form-input-underline:focus {
+  outline: none;
+  border-bottom-color: #1976d2; /* Couleur focus */
+  background-color: rgba(25, 118, 210, 0.05);
+}
+
+/* Inputs pour le nom (plus larges) */
+.name-inputs-container input {
+  width: 45%;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Boutons --- */
+.btn-modern-outline-primary {
+  border: 2px solid #1976d2;
   color: #1976d2;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
 }
 
-/* Footer */
-.modal-footer {
-  padding: 16px 20px;
-  background: #fafafa;
-  text-align: right;
-  border-bottom-left-radius: 16px;
-  border-bottom-right-radius: 16px;
+.btn-modern-outline-primary:hover {
+  background-color: #1976d2;
+  color: white;
+  transform: translateY(-1px);
 }
 
-.logout-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #d32f2f;
+.btn-modern-success {
+  background-color: #2e7d32;
   color: white;
   border: none;
-  padding: 8px 18px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 14px;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+  transition: all 0.2s;
 }
 
-.logout-btn:hover {
-  background: #b71c1c;
+.btn-modern-success:hover {
+  background-color: #1b5e20;
+  transform: translateY(-1px);
+}
+
+.btn-modern-secondary {
+  background-color: #f5f5f5;
+  color: #666;
+  border: none;
+  border-radius: 50px;
+  padding: 0.5rem 1.5rem;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.btn-modern-secondary:hover {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.btn-icon-small {
+  font-size: 18px !important;
+  height: 18px !important;
+  width: 18px !important;
+  vertical-align: text-bottom;
+}
+
+/* --- Animations --- */
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeInContent 0.4s ease-in-out;
+}
+
+@keyframes fadeInContent {
+  from { opacity: 0; transform: scale(0.98); }
+  to { opacity: 1; transform: scale(1); }
 }

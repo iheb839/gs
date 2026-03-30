@@ -5,9 +5,10 @@ import { UserDto } from '../../../user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../services/user';
+import { MatIcon } from '@angular/material/icon';
 @Component({
   selector: 'app-updateuser',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,MatIcon],
   templateUrl: './updateuser.html',
   styleUrl: './updateuser.css',
 })
@@ -17,9 +18,20 @@ export class Updateuser implements OnInit {
     email: '',
     firstname: '',
     lastname: '',
+    tel: '',
+    dateN: new Date(),
+    genre: '',
     role: '',
     departement: ''
   };
+   departements: string[] = [
+  'Informatique',
+  'Réseaux',
+  'Sécurité Informatique',
+  'Développement',
+  'Finance',
+  'Ressources Humaines'
+];
 
   constructor(private route: ActivatedRoute, private userService: UserService, private router: Router) { }
   ngOnInit(): void {

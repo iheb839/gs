@@ -1,48 +1,89 @@
-<div class="container my-4">
-  <h2>Modifier Document</h2>
-
-  <form (ngSubmit)="updatedocument()">
-
-    <div class="mb-3">
-      <label class="form-label">Titre :</label>
-      <input type="text" [(ngModel)]="doc.title" name="title" class="form-control" required>
+<div class="d-flex justify-content-center align-items-center min-vh-100 bg-light">
+  <div class="card shadow-lg border-0 rounded-4" style="max-width: 850px; width: 100%;">
+    <div class="card-header bg-white border-0 pt-4 px-5 pb-0">
+      <div class="d-flex align-items-center justify-content-center gap-3">
+        <div class="bg-primary bg-opacity-10 p-3 rounded-circle">
+          <mat-icon>edit</mat-icon>
+        </div>
+        <div class="text-center">
+          <h4 class="fw-bold mb-0 text-dark">Modifier le Document</h4>
+          <p class="text-muted small mb-0">Mettez à jour les informations ci-dessous.</p>
+        </div>
+      </div>
     </div>
+    <div class="card-body p-5">
+      <form (ngSubmit)="updatedocument()">
 
-    <div class="mb-3">
-      <label class="form-label">Description :</label>
-      <textarea [(ngModel)]="doc.description" name="description" class="form-control" rows="3" required></textarea>
+        <div class="row g-4">
+          <div class="col-md-6">
+            <label class="form-label text-muted small fw-bold text-uppercase">Titre du document</label>
+            <input type="text" [(ngModel)]="doc.title" name="title"
+              class="form-control form-control-lg bg-light border-0" placeholder="Ex: Rapport Annuel" required>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label text-muted small fw-bold text-uppercase">Visibilité</label>
+            <select [(ngModel)]="doc.visibility" name="visibilite" class="form-select form-select-lg bg-light border-0"
+              required>
+              <option value="PUBLIC">🌍 Public</option>
+              <option value="PRIVE">🔒 Privé</option>
+              <option value="RESTREINT">👥 Restreint</option>
+            </select>
+          </div>
+          <div class="col-12">
+            <label class="form-label text-muted small fw-bold text-uppercase">Description</label>
+            <textarea [(ngModel)]="doc.description" name="description" class="form-control bg-light border-0" rows="3"
+              placeholder="Décrivez le contenu du document..." required></textarea>
+          </div>
+          <div class="col-12">
+            <label class="form-label text-muted small fw-bold text-uppercase">Fichier</label>
+            <div class="file-upload-wrapper">
+              <input type="file" id="fileUpload" (change)="onFileSelected($event)" class="file-upload-input"
+                style="display: none;">
+              <label for="fileUpload"
+                class="file-upload-label d-flex flex-column align-items-center justify-content-center p-4 rounded-3 
+                border border-2 border-dashed">
+                <mat-icon class="text-muted mb-2" style="font-size: 23px;">cloud_upload</mat-icon>
+                <span class="fw-bold text-dark">Cliquez pour parcourir</span>
+                <span class="text-muted small">ou glissez-déposez un fichier ici</span>
+
+                <!-- Afficher le nom du fichier sélectionné -->
+                <span *ngIf="selectedFileName" class="mt-2 text-primary">{{ selectedFileName }}</span>
+              </label>
+            </div>
+          </div>
+          @if(doc.visibility === 'RESTREINT') {
+          <div class="col-12 mt-3">
+            <label class="form-label text-primary fw-bold">
+              <mat-icon style="font-size: 18px; vertical-align: middle;">lock_person</mat-icon>
+              Accès Restreint aux utilisateurs
+            </label>
+            <div class="bg-light p-3 rounded-3">
+              <mat-form-field class="w-100" appearance="fill">
+                <mat-label>Sélectionner les utilisateurs</mat-label>
+                <mat-select multiple name="usershasaccess" [(ngModel)]="selectedUserIds">
+                  @for (u of allUsers; track u.id) {
+                  <mat-option [value]="u.id">
+                    {{ u.firstname }} {{ u.lastname }}
+                  </mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+          }
+
+        </div>
+        <div class="d-flex justify-content-end gap-3 mt-5 pt-3 border-top">
+          <button class="btn btn-light text-muted px-4 py-2 rounded-pill" type="button" (click)="cancel()">
+            Annuler
+          </button>
+          <button class="btn btn-primary px-5 py-2 rounded-pill shadow-sm d-flex align-items-center gap-2"
+            type="submit">
+            <mat-icon style="font-size: 20px;">save</mat-icon>
+            Enregistrer
+          </button>
+        </div>
+      </form>
     </div>
-
-   <div class="mb-3">
-  <label class="form-label">Fichier :</label>
-  <input type="file"(change)="onFileSelected($event)"class="form-control">
-</div>
-
-
-    <div class="mb-3">
-      <label class="form-label">Visibilité :</label>
-      <select [(ngModel)]="doc.visibility" name="visibilite" class="form-select" required>
-        <option value="PUBLIC">Public</option>
-        <option value="PRIVE">Private</option>
-        <option value="RESTREINT">Restreint</option>
-      </select>
-    </div>
-
-    @if(doc.visibility === 'RESTREINT'){
-    <mat-form-field class="w-100" appearance="outline">
-      <mat-label>Utilisateurs autorisés :</mat-label>
-      <mat-select multiple name="usreshasaccess" [(ngModel)]="selectedUserIds">
-        @for (u of getVisibleUsers(); track u.id) {
-        <mat-option [value]="u.id">
-          {{ u.firstname }}
-        </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    }
-    <button class="btn btn-success me-2" type="submit">Modifier</button>
-    <button class="btn btn-secondary" type="button" (click)="cancel()">Annuler</button>
-
-  </form>
+  </div>
 </div>

@@ -3,6 +3,9 @@ export interface User {
   email: string;
   firstname: string;
   lastname: string;
+  tel: string;
+  dateN:Date;
+  genre: string;
   role: string;
   departement: string;
 }
@@ -12,14 +15,20 @@ export interface UserDto {
   email: string;
   firstname: string;
   lastname: string;
+  tel: string;
+  dateN:Date;
+  genre: string;
   role: string;
   departement: string;
 }
-
+ 
 export interface CreateUserDto {
   email: string;
   firstname: string;
   lastname: string;
+  tel: string;
+  dateN:Date;
+  genre: string;
   password: string;
   role: string;
   departement: string;
@@ -40,4 +49,9 @@ export interface Stats {
   publicDocs: number;
   privateDocs: number;
   restrictedDocs: number;
+}
+export interface UpdatePasswordRequest {
+  email: string;
+  confirmCode: string;
+  newPassword: string;
 }

@@ -15,28 +15,26 @@ import { Profile } from '../profile/profile';
 })
 export class NavbarComponent {
   readonly dialog = inject(MatDialog);
-
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
-
   isLoggedInUser(): boolean {
     return this.authService.isLoggedIn();
   }
   isAdmin(): boolean {
     return this.authService.isAdmin();
   }
-
-
+  isAgent(): boolean {
+    return this.authService.isAgent();
+  }
   logout(): void {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-
   goToProfile() {
-   const result = this.dialog.open(Profile, {
-       width: '600px',
+    const result = this.dialog.open(Profile, {
+      width: '600px',
       closeOnNavigation: true,
     });
     result.afterClosed().subscribe((closed) => {

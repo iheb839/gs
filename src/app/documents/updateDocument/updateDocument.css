@@ -1,0 +1,45 @@
+/* Assure que la page prend au moins la hauteur de l'écran pour centrer */
+.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Suppression des bordures par défaut au focus pour un look plus doux */
+.form-control:focus, .form-select:focus {
+  box-shadow: 0 0 0 4px rgba(13, 110, 253, 0.15);
+  border-color: transparent;
+}
+
+/* --- Style Zone Upload Fichier --- */
+.file-upload-label {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.file-upload-label:hover {
+  background-color: #e9ecef;
+  border-color: #0d6efd;
+}
+
+.file-upload-label:hover mat-icon {
+  color: #0d6efd !important;
+}
+
+/* --- Bouton Primary --- */
+.btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0b5ed7 0%, #0a58ca 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
+}
+
+/* --- Adaptation Material Select --- */
+/* Pour que le material select ne fasse pas trop tache dans le design bootstrap */
+mat-form-field.mat-mdc-form-field {
+  font-family: inherit; /* Utilise la police du site */
+}

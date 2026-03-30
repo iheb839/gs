@@ -10,9 +10,7 @@ import { AuthService } from '../services/authentification';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-
      constructor(private authService: AuthService) {}
-
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -27,7 +25,6 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
-
     return next.handle(request);
   }
 }

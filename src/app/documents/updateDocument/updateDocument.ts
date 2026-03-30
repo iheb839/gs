@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { DocumentDto } from '../../document';
+import { CreateDocumentdto, DocumentDto } from '../../document';
 import { CommonModule } from '@angular/common';
 import { DocumentService } from '../../services/document';
 import { ActivatedRoute } from '@angular/router';
@@ -12,11 +12,12 @@ import { MatFormField } from '@angular/material/form-field';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { MatIcon } from '@angular/material/icon';
 
 
 @Component({
   selector: 'app-updateDocument',
-  imports: [CommonModule, FormsModule, MatFormField, MatFormFieldModule, MatSelectModule, MatOptionModule],
+  imports: [CommonModule, FormsModule, MatFormField, MatFormFieldModule, MatSelectModule, MatOptionModule, MatIcon],
   standalone: true,
   templateUrl: './updateDocument.html',
   styleUrl: './updateDocument.css',
@@ -24,7 +25,10 @@ import { MatOptionModule } from '@angular/material/core';
 export class Updatedocument implements OnInit {
   doc!: DocumentDto;
   allUsers: any[] = [];
-  constructor(private userService: UserService, private authService: AuthService, private route: ActivatedRoute, private documentService: DocumentService, private router: Router) { }
+  selectedFile?: File;
+  selectedFileName: string = '';
+  constructor(private userService: UserService, private authService: AuthService,
+    private route: ActivatedRoute, private documentService: DocumentService, private router: Router) { }
   selectedUserIds: number[] = [];
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -34,6 +38,12 @@ export class Updatedocument implements OnInit {
           this.doc = data;
           if (this.doc.usersHasAccess) {
             this.selectedUserIds = this.doc.usersHasAccess.map(u => u.id);
+          }
+
+          // Convertir Base64 en File pour selectedFile
+          if (this.doc.file && this.doc.type) {
+            this.selectedFile = this.base64ToFile(this.doc.file, this.doc.title || 'document', this.doc.type);
+            this.selectedFileName = (this.doc.title || 'document')+ '.' + this.doc.type.split('/')[1];
           }
         },
         error: (err) => console.error(err)
@@ -45,49 +55,56 @@ export class Updatedocument implements OnInit {
       error: (err) => console.error(err)
     });
   }
-  getVisibleUsers(): User[] {
-    if (this.authService.isAdmin()) {
-      return this.allUsers;
-    } else {
-      const currentDept = this.authService.getCurrentUserDepartement();
-      return this.allUsers.filter(u => u.departement === currentDept);
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.selectedFile = input.files[0];
+      this.selectedFileName = this.selectedFile.name;
     }
   }
+  updatedocument() {
 
- selectedFile?: File;
+    // transformer DocumentDto en CreateDocumentdto
+    const dto: CreateDocumentdto = {
+      id: this.doc.id,
+      title: this.doc.title,
+      description: this.doc.description,
+      visibility: this.doc.visibility,
+      usersHasAccess: this.selectedUserIds,
+    };
 
-onFileSelected(event: any) {
-  this.selectedFile = event.target.files[0];
-}
+    const formData = new FormData();
 
-updatedocument() {
+    formData.append(
+      'document',
+      new Blob([JSON.stringify(dto)], { type: 'application/json' })
+    );
 
-  this.doc.usersHasAccess = this.allUsers
-    .filter(u => this.selectedUserIds.includes(u.id));
-
-  const formData = new FormData();
-
-  formData.append(
-    'document',
-    new Blob([JSON.stringify(this.doc)], { type: 'application/json' })
-  );
-
-  if (this.selectedFile) {
-    formData.append('file', this.selectedFile);
+    if (this.selectedFile) {
+      formData.append('file', this.selectedFile);
+    }
+    this.documentService
+      .updateDocument(this.doc.id, formData)
+      .subscribe({
+        next: () => {
+          alert('Document updated successfully');
+          this.router.navigate(['/documents']);
+        },
+        error: (err) => console.error(err)
+      });
   }
-
-  this.documentService
-    .updateDocument(this.doc.id!, formData)
-    .subscribe({
-      next: () => {
-        alert('Document updated successfully');
-        this.router.navigate(['/documents']);
-      },
-      error: (err) => console.error(err)
-    });
-}
-
   cancel() {
     this.router.navigate(['/documents']);
+  }
+
+  private base64ToFile(base64String: string, filename: string, docType: string): File {
+    const byteCharacters = atob(base64String.includes(',') ? base64String.split(',')[1] : base64String);
+    const byteNumbers = new Array(byteCharacters.length);
+    for (let i = 0; i < byteCharacters.length; i++) {
+      byteNumbers[i] = byteCharacters.charCodeAt(i);
+    }
+    const byteArray = new Uint8Array(byteNumbers);
+    return new File([byteArray], filename, { type: docType });
   }
 }

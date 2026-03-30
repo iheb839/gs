@@ -1,27 +1,48 @@
-<div class="vh-100 d-flex justify-content-center align-items-center bg-light">
-  <div class="card shadow p-4 w-100" style="max-width: 400px;">
-    <div class="text-center mb-4">
-      <h2 class="text-primary fw-bold">Smart Archive</h2>
-      <p class="text-muted">Connectez-vous pour accéder à vos documents</p>
+<div class="login-wrapper vh-100 d-flex justify-content-center align-items-center">
+  
+  <div class="card login-card shadow-lg border-0 overflow-hidden">
+    <div class="card-header-custom"></div>
+
+    <div class="card-body p-5">
+      <div class="text-center mb-5">
+        <div class="logo-circle mb-3">
+          <mat-icon class="logo-icon">folder_shared</mat-icon>
+        </div>
+        <h2 class="fw-bold text-dark mb-1">Smart Archive</h2>
+        <p class="text-muted small">Bienvenue, connectez-vous pour continuer</p>
+      </div>
+      <form (ngSubmit)="login()">
+        <div class="mb-4 input-group-custom">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-0">
+              <mat-icon class="text-muted">email</mat-icon>
+            </span>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              class="form-control bg-light border-0 ps-0" 
+              placeholder="Adresse email" 
+              [(ngModel)]="email">
+          </div>
+        </div>
+        <div class="mb-4 input-group-custom">
+          <div class="input-group">
+            <span class="input-group-text bg-light border-0">
+              <mat-icon class="text-muted">lock</mat-icon>
+            </span>
+            <input type="password" id="password" name="password" class="form-control bg-light border-0 ps-0" placeholder="Mot de passe" [(ngModel)]="password">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary-custom w-100 py-3 mb-4 fw-bold shadow-sm">
+          Se connecter
+        </button>
+        <div class="text-center">
+          <a routerLink="/updatepassword/:email" class="text-decoration-none text-muted small hover-primary">
+            Mot de passe oublié ?
+          </a>
+        </div>
+      </form>
     </div>
-    <form>
-      <div class="mb-3">
-        <label for="email" class="form-label">Email :</label>
-        <input type="email" id="email" name="email" class="form-control" placeholder="ex: user@cni.tn"
-          [(ngModel)]="email">
-      </div>
-
-      <div class="mb-3">
-        <label for="password" class="form-label">Mot de passe :</label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="Votre mot de passe"
-          [(ngModel)]="password">
-      </div>
-
-      <button type="button" class="btn btn-primary w-100 mb-3" (click)="login()">Se connecter</button>
-
-      <div class="text-center">
-        <a routerLink="/updatepassword/:email" class="text-primary">Mot de passe oublié ?</a>
-      </div>
-    </form>
   </div>
 </div>

@@ -15,10 +15,9 @@ export interface ConfirmDialogData {
 })
 export class ConfirmationPopupComponent {
 
-  constructor(
-    public dialogRef: MatDialogRef<ConfirmationPopupComponent>,
+  constructor(public dialogRef: MatDialogRef<ConfirmationPopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: ConfirmDialogData
-  ) {}
+  ) { }
 
   confirm() {
     this.dialogRef.close(true);

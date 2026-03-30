@@ -1,36 +1,123 @@
-<div class="modal-overlay">
-  <div class="profile-modal">
-
-    <div class="modal-header">
-      <div class="header-left">
-        <mat-icon class="header-icon">account_circle</mat-icon>
-        <h2>Mon Profil</h2>
-      </div>
-      <button class="close-btn" (click)="closeModal()">
+<div class="profile-modal-overlay">
+  <div class="profile-card">
+    <div class="profile-header">
+      <h5 class="mb-0">Mon Profil</h5>
+      <button class="btn-close-icon" (click)="closeModal()" aria-label="Fermer">
         <mat-icon>close</mat-icon>
       </button>
     </div>
-    <div class="modal-body">
-
-      <div class="avatar-section">
-        <mat-icon class="avatar-icon">person</mat-icon>
-        <h4>{{ user?.firstname }} {{ user?.lastname }}</h4>
-        <span class="role-badge">{{ user?.role }}</span>
-      </div>
-
-      <div class="info-section">
-        <div class="info-item">
-          <mat-icon>email</mat-icon>
-          <span>{{ user?.email }}</span>
+    <div class="profile-body">
+      @if(mode === 'view') {
+      <div class="profile-content fade-in">
+        <div class="avatar-circle mb-3">
+          <mat-icon class="avatar-large">person</mat-icon>
         </div>
+        <h3 class="profile-name">
+          {{ user?.firstname }} {{ user?.lastname }}
+        </h3>
+        <span class="badge-role">
+          {{ user?.role }}
+        </span>
+        <div class="info-list mt-4">
+          <div class="info-item">
+            <mat-icon class="info-icon">phone</mat-icon>
+            <span class="info-text">{{ user?.tel }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">date_range</mat-icon>
+            <span class="info-text">{{ user?.dateN | date:'yyyy-MM-dd' }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">person</mat-icon>
+            <span class="info-text">{{ user?.genre }}</span>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">email</mat-icon>
+            <span class="info-text">{{ user?.email }}</span>
+          </div>
+          @if(!isAdmin()) {
+          <div class="info-item">
+            <mat-icon class="info-icon">business</mat-icon>
+            <span class="info-text">{{ user?.departement }}</span>
+          </div>}
+        </div>
+        <div class="mt-4">
+          <button class="btn btn-modern-outline-primary" (click)="enableEdit()">
+            <mat-icon class="btn-icon-small me-1">edit</mat-icon>
+            Modifier le profil
+          </button>
+        </div>
+      </div>}
 
-        <div class="info-item">
-          <mat-icon>business</mat-icon>
-          <span>{{ user?.departement }}</span>
+      @if(mode === 'edit') {
+      <div class="profile-content fade-in">
+        <div class="avatar-circle mb-3 editing">
+          <mat-icon class="avatar-large">edit</mat-icon>
+        </div>
+        <div class="name-inputs-container d-flex justify-content-center gap-2 mt-3">
+          <input class="form-input-underline text-center" placeholder="Prénom" [(ngModel)]="user!.firstname">
+          <input class="form-input-underline text-center" placeholder="Nom" [(ngModel)]="user!.lastname">
+        </div>
+        <span class="badge-role mt-2 d-inline-block">
+          {{ user?.role }}
+        </span>
+        <div class="info-list mt-4">
+          <div class="info-item">
+            <mat-icon class="info-icon">phone</mat-icon>
+            <input class="form-input-underline w-100" [(ngModel)]="user!.tel">
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">date_range</mat-icon>
+            <input type="date" class="form-input-underline w-100" [(ngModel)]="user!.dateN">
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">person</mat-icon>
+
+            <select class="form-input-underline w-100" [(ngModel)]="user!.genre">
+              <option value="HOMME">HOMME</option>
+              <option value="FEMME">FEMME</option>
+            </select>
+          </div>
+          <div class="info-item">
+            <mat-icon class="info-icon">email</mat-icon>
+            <input class="form-input-underline w-100" placeholder="Email" [(ngModel)]="user!.email">
+          </div>
+        </div>
+        <div class="action-buttons mt-4 d-flex justify-content-center gap-3">
+          <button class="btn btn-modern-success" (click)="updateProfile()">
+            <mat-icon class="btn-icon-small me-1">check</mat-icon>
+            Enregistrer
+          </button>
+          <button class="btn btn-modern-secondary" (click)="cancelEdit()">
+            <mat-icon class="btn-icon-small me-1">close</mat-icon>
+            Annuler
+          </button>
+        </div>
+      </div>}
+      <div class="mt-4">
+        <button class="btn btn-modern-outline-danger" (click)="togglePasswordForm()">
+          <mat-icon class="btn-icon-small me-1">lock</mat-icon>
+          Changer mot de passe
+        </button>
+      </div>
+      @if(mode === 'password') {
+      <div class="password-form mt-3">
+        <input type="password" placeholder="Ancien mot de passe" class="form-input-underline w-100"
+          [(ngModel)]="passwordData.oldPassword">
+        <input type="password" placeholder="Nouveau mot de passe" class="form-input-underline w-100 mt-2"
+          [(ngModel)]="passwordData.newPassword">
+        <input type="password" placeholder="Confirmer mot de passe" class="form-input-underline w-100 mt-2"
+          [(ngModel)]="passwordData.confirmPassword">
+        <div class="d-flex gap-2 mt-3">
+          <button class="btn btn-modern-success" (click)="changePassword()">
+            Confirmer
+          </button>
+          <button class="btn btn-modern-secondary" (click)="togglePasswordForm()">
+            Annuler
+          </button>
         </div>
       </div>
-
+      }
     </div>
-
   </div>
 </div>

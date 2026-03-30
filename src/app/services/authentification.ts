@@ -10,8 +10,6 @@ import { LoginResponse, UpdatePasswordDto, User } from '../user';
 export class AuthService {
   private url: string = 'http://localhost:8081/auth';
   isLoggedIn = signal(false);
-
- 
   constructor(private http: HttpClient, private router: Router) {
   const token = localStorage.getItem('token');
   this.isLoggedIn.set(!!token);
@@ -42,11 +40,17 @@ export class AuthService {
     }
     return null;
   }
+  isAgent(): boolean {
+    const role=this.getUserRole();
+    if(role!=null){
+      return role ==='AGENT_ADMINISTRATIF';
+    }
+    return false;
+  }
   isAdmin(): boolean {
-    const userInfoAsString = localStorage.getItem('USER_INFO');
-    if (userInfoAsString !== null) {
-      const user: User = JSON.parse(userInfoAsString);
-      return user.role === 'ADMIN'
+    const role=this.getUserRole();
+    if(role!=null){
+      return role ==='ADMIN';
     }
     return false;
   }
@@ -64,17 +68,9 @@ getCurrentUserEmail(): string | null {
       const user: User = JSON.parse(userInfoAsString);
       return user.id
     }
-    return -1; // أو أي قيمة افتراضية تشير إلى عدم وجود مستخدم متصل
+    return -1;
   }
-  getCurrentUserDepartement():string | null{
-    const userInfoAsString = localStorage.getItem('USER_INFO');
-    if (userInfoAsString !== null) {
-      const user: User = JSON.parse(userInfoAsString);
-      return user.departement
-    }
-    return null
 
-  }
   getToken(): string | null {
     return localStorage.getItem('token');
   }
