@@ -6,9 +6,9 @@
     <div class="card-body p-5">
       <div class="text-center mb-5">
         <div class="logo-circle mb-3">
-          <mat-icon class="logo-icon">folder_shared</mat-icon>
+          <mat-icon class="logo-icon">school</mat-icon>
         </div>
-        <h2 class="fw-bold text-dark mb-1">Smart Archive</h2>
+        <h2 class="fw-bold text-dark mb-1">Soutenance</h2>
         <p class="text-muted small">Bienvenue, connectez-vous pour continuer</p>
       </div>
       <form (ngSubmit)="login()">
@@ -40,6 +40,9 @@
         <div class="text-center">
           <a routerLink="/updatepassword/:email" class="text-decoration-none text-muted small hover-primary">
             Mot de passe oublié ?
+          </a>
+          <a routerLink="/signup" class="text-decoration-none text-muted small hover-primary">
+            S'inscrire
           </a>
         </div>
       </form>

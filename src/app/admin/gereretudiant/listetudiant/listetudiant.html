@@ -1,0 +1,37 @@
+<h2>Gestion des étudiants</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nom</th>
+      <th>Prénom</th>
+      <th>Email</th>
+      <th>Matricule</th>
+      <th>Genre</th>
+      <th>Téléphone</th>
+      <th>Date Naissance</th>
+      <th>Département</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (e of etudiants; track e.id) {
+      <tr>
+        <td>{{ e.nom }}</td>
+        <td>{{ e.prenom }}</td>
+        <td>{{ e.email }}</td>
+        <td>{{ e.matricule }}</td>
+        <td>{{ e.genre }}</td>
+        <td>{{ e.tel }}</td>
+        <td>{{ e.dateN }}</td>
+        <td>{{ e.departement }}</td>
+        <td>
+          <button (click)="edit(e.id)">✏️</button>
+          <button (click)="delete(e.id)">🗑️</button>
+        </td>
+      </tr>
+    }
+  </tbody>
+</table>
+``

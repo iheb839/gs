@@ -8,7 +8,7 @@ import { UpdatePasswordRequest } from '../user';
 })
 export class Resetpassword {
 
- private url: string = 'http://localhost:8081/pass';
+ private url: string = 'http://localhost:8082/pass';
  constructor(private http: HttpClient, private router: Router) {
   const token = localStorage.getItem('token');
   

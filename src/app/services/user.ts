@@ -9,7 +9,7 @@ import { AuthService } from './authentification';
   providedIn: 'root',
 })
 export class UserService {
-  url: string = 'http://localhost:8081/users';
+  url: string = 'http://localhost:8082/users';
   constructor(private http: HttpClient, private authService: AuthService) { }
 
   createUser(user: CreateUserDto): Observable<User> {

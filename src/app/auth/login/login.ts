@@ -23,7 +23,11 @@ export class Login {
       next: (response) => {
         this.authService.saveUserData(response);
         this.toastrService.success('Login successful!', 'Success');
-          this.router.navigate(['/documents']);
+        const userRole = this.authService.getUserRole();
+        if (userRole === 'ADMIN') {
+          this.router.navigate(['/admin']);
+        }
+        
       },
       error: () => {
         this.toastrService.error('Invalid email or password', 'Login Failed');

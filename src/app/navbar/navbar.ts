@@ -3,8 +3,6 @@ import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../services/authentification';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Profile } from '../profile/profile';
-
 
 @Component({
   selector: 'app-navbar',
@@ -32,15 +30,5 @@ export class NavbarComponent {
     this.authService.logout();
     this.router.navigate(['/login']);
   }
-  goToProfile() {
-    const result = this.dialog.open(Profile, {
-      width: '600px',
-      closeOnNavigation: true,
-    });
-    result.afterClosed().subscribe((closed) => {
-      if (closed) {
-        this.router.navigate(['/documents']);
-      }
-    });
-  }
+  
 }

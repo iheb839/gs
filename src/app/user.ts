@@ -1,8 +1,8 @@
 export interface User {
   id: number;
   email: string;
-  firstname: string;
-  lastname: string;
+  nom: string;
+  prenom: string;
   tel: string;
   dateN:Date;
   genre: string;
@@ -13,8 +13,8 @@ export interface User {
 export interface UserDto {
   id: number;
   email: string;
-  firstname: string;
-  lastname: string;
+  nom: string;
+  prenom  : string;
   tel: string;
   dateN:Date;
   genre: string;
@@ -24,8 +24,8 @@ export interface UserDto {
  
 export interface CreateUserDto {
   email: string;
-  firstname: string;
-  lastname: string;
+nom: string;
+  prenom: string;
   tel: string;
   dateN:Date;
   genre: string;

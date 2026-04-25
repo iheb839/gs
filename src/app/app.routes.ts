@@ -1,27 +1,31 @@
 import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
-import { Updatedocument } from './documents/updateDocument/updateDocument';
-import { Listdocument } from './documents/listdocument/listdocument';
-import { Listuser } from './admin/users/listuser/listuser';
-import { Profile } from './profile/profile';
-import { Adddocument } from './documents/addDocument/addDocument';
+
 import { Updatepassword } from './auth/updatepassword/updatepassword';
-import { Adduser } from './admin/users/adduser/adduser';
-import { Updateuser } from './admin/users/updateuser/updateuser';
-import { Dashboard } from './admin/dashboard/dashboard';
-import { RoleGuard } from './auth-guard';
+import { Signup } from './auth/signup/signup';
+import { Etudiant } from './etudiant/etudiant';
+import { Chefdepartement } from './chefdepartement/chefdepartement';
+import { Admin } from './admin/admin';
+import { Dashbord } from './admin/dashbord/dashbord';
+import { Adminencadrant } from './admin/gererencadrant/adminencadrant/adminencadrant';
+import { Adminchefdepartement } from './admin/gererchefdepartement/adminchefdepartement/adminchefdepartement';
+import { Editetudiant      } from './admin/gereretudiant/editetudiant/editetudiant';
+import { Listetudiant } from './admin/gereretudiant/listetudiant/listetudiant';
+
 
 export const routes: Routes = [
   { path: '', component: Login },
+    { path: 'admin/etudiants/edit/:id', component: Editetudiant },
   { path: 'login', component: Login },
-  { path: 'profile', component: Profile },
-  { path: 'documents', component: Listdocument },
-  { path: 'addDocument', component: Adddocument },
-  { path: 'updateDocument/:id', component: Updatedocument },
+  { path: 'signup', component: Signup },
   { path: 'updatepassword/:email', component: Updatepassword },
-  {path: 'users',component: Listuser, canActivate: [RoleGuard], data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
-  {path: 'addUser',component: Adduser,canActivate: [RoleGuard], data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
-  {path: 'updateuser/:id',component: Updateuser,canActivate: [RoleGuard],data: { roles: ['ADMIN','AGENT_ADMINISTRATIF'] }},
-  { path: 'adminDashboard', component: Dashboard,canActivate: [RoleGuard],data: { roles: ['ADMIN',] }},
+  { path: 'etudiant', component: Etudiant },
+  { path: 'adminencadrant', component: Adminencadrant },
+  {path: 'chefdepartement', component: Chefdepartement},
+  {path: 'admin', component: Admin},
+  {path: 'dashbord', component: Dashbord},
+  {path:'Listetudiant',component: Listetudiant},
+  {path:'adminchefdepartement',component: Adminchefdepartement},
+
    { path: '**', redirectTo: 'login' }
 ];

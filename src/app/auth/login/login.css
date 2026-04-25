@@ -95,7 +95,7 @@
   color: #0d6efd !important;
   text-decoration: underline;
 }
-@keyframes slideUpFade {
+@keyframes slideUpFade {  
   from {
     opacity: 0;
     transform: translateY(30px);

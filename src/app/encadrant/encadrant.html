@@ -1,0 +1,100 @@
+<!-- encadrant.component.html -->
+
+<div class="container">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>👨‍🏫 Espace Enseignant</h2>
+    <button class="logout">Déconnexion</button>
+  </nav>
+
+  <!-- Infos encadrant -->
+  <div class="card profile">
+    <h3>Informations</h3>
+    <p><strong>Nom :</strong> Dr. Mohamed</p>
+    <p><strong>Email :</strong> mohamed@univ.tn</p>
+    <p><strong>Spécialité :</strong> Informatique</p>
+    <p><strong>Nombre max étudiants :</strong> 5</p>
+  </div>
+
+  <!-- Liste des demandes -->
+  <div class="card">
+    <h3>Demandes des étudiants</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Étudiant</th>
+          <th>Sujet</th>
+          <th>Société</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Ahmed Ben Ali</td>
+          <td>Application Web</td>
+          <td>TechCorp</td>
+          <td>
+            <button class="accept">Accepter</button>
+            <button class="refuse">Refuser</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Sara Khaled</td>
+          <td>IA Projet</td>
+          <td>AI Lab</td>
+          <td>
+            <button class="accept">Accepter</button>
+            <button class="refuse">Refuser</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+  <h3>Mes étudiants</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Étudiant</th>
+        <th>Sujet</th>
+        <th>Date</th>
+        <th>salle</th>
+        <th>Rôle</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>Ahmed Ben Ali</td>
+        <td>Application Web</td>
+        <td>20/06/2026</td>
+        <td>A1</td>
+        <td class="encadrant">Encadrant</td>
+      </tr>
+
+      <tr>
+        <td>Sara Khaled</td>
+        <td>IA Projet</td>
+        <td>21/06/2026</td>
+        <td>B2</td>
+        <td class="rapporteur">Rapporteur</td>
+      </tr>
+
+      <tr>
+        <td>Ali Mansour</td>
+        <td>Data Science</td>
+        <td>22/06/2026</td>
+        <td>C3</td>
+        <td class="president">Président Jury</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

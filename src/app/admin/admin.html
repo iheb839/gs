@@ -1,0 +1,95 @@
+<!-- admin.component.html -->
+
+<div class="container">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>👑 Admin Dashboard</h2>
+    <button class="logout">Déconnexion</button>
+  </nav>
+
+  <!-- Stats -->
+  <div class="stats">
+
+    <div class="stat-card users">
+      <h4>Utilisateurs</h4>
+      <p>200</p>
+    </div>
+
+    <div class="stat-card students">
+      <h4>Étudiants</h4>
+      <p>120</p>
+    </div>
+
+    <div class="stat-card encadrants">
+      <h4>Enseignants</h4>
+      <p>20</p>
+    </div>
+    <div class="stat-card encadrants">
+      <h4>chef departement</h4>
+      <p>8</p>
+    </div>
+
+    <div class="stat-card soutenances">
+      <h4>Soutenances</h4>
+      <p>35</p>
+    </div>
+
+  </div>
+
+  <!-- Gestion -->
+  <div class="card">
+    <h3>Gestion du système</h3>
+
+    <div class="actions">
+
+      <button class="btn">➕ Ajouter utilisateur</button>
+      <button class="btn">👨‍🎓 Gérer étudiants</button>
+      <button class="btn">👨‍🏫 Gérer enseignants</button>
+      <button class="btn">👨‍🏫 Gérer chef departement</button>
+      <button class="btn">🏛️ Gérer départements</button>
+      <button class="btn">📅 Planifier soutenances</button>
+
+    </div>
+  </div>
+
+  <!-- Liste utilisateurs -->
+  <div class="card">
+    <h3>Liste des utilisateurs</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Nom</th>
+          <th>Email</th>
+          <th>Rôle</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Ahmed Ben Ali</td>
+          <td>ahmed@gmail.com</td>
+          <td>Étudiant</td>
+          <td>
+            <button class="edit">Modifier</button>
+            <button class="delete">Supprimer</button>
+          </td>
+        </tr>
+
+        <tr>
+          <td>Dr. Mohamed</td>
+          <td>mohamed@univ.tn</td>
+          <td>Encadrant</td>
+          <td>
+            <button class="edit">Modifier</button>
+            <button class="delete">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+</div>

@@ -1,0 +1,42 @@
+<h2>Gestion des chefs de département</h2>
+
+<!-- Ajouter -->
+<div class="form">
+  <input [(ngModel)]="newChef.nom" placeholder="Nom">
+  <input [(ngModel)]="newChef.prenom" placeholder="Prénom">
+  <input [(ngModel)]="newChef.email" placeholder="Email">
+  <input [(ngModel)]="newChef.departement" placeholder="Département">
+  <button (click)="add()">➕ Ajouter</button>
+</div>
+
+<!-- Liste -->
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Département</th>
+    <th>Actions</th>
+  </tr>
+@for (chef of chefs; track $index) {
+  <tr >
+    <td>{{ chef.nom }} {{ chef.prenom }}</td>
+    <td>{{ chef.email }}</td>
+    <td>{{ chef.departement }}</td>
+    <td>
+      <button (click)="edit(chef)">✏️</button>
+      <button (click)="delete(chef.id)">🗑️</button>
+    </td>
+  </tr>}
+</table>
+
+<!-- Modifier -->
+  @if(editChef){
+<div  class="modal">
+  <h3>Modifier chef de département</h3>
+  <input [(ngModel)]="editChef.nom">
+  <input [(ngModel)]="editChef.prenom">
+  <input [(ngModel)]="editChef.email">
+  <input [(ngModel)]="editChef.departement">
+  <button (click)="save()">✅ Enregistrer</button>
+  <button (click)="editChef=null">❌ Annuler</button>
+</div>}

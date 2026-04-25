@@ -2,19 +2,21 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginResponse, UpdatePasswordDto, User } from '../user';
+import { CreateUserDto, LoginResponse, UpdatePasswordDto, User } from '../user';
 @Injectable({
   providedIn: 'root',
 })
 
 export class AuthService {
-  private url: string = 'http://localhost:8081/auth';
+  private url: string = 'http://localhost:8082/auth';
   isLoggedIn = signal(false);
   constructor(private http: HttpClient, private router: Router) {
   const token = localStorage.getItem('token');
   this.isLoggedIn.set(!!token);
 }
-
+  signup(userData: CreateUserDto): Observable<any> {
+    return this.http.post(this.url + `/signup`, userData);
+  }
   login(email: string, password: string): Observable<LoginResponse> {
     return this.http.post<LoginResponse>(this.url + `/login`, { email, password });
   }
@@ -30,7 +32,6 @@ export class AuthService {
   logout() {
     this.isLoggedIn.set(false);
     localStorage.clear();
-    this.router.navigate(['/login']);
   }
   getUserRole(): string | null {
     const userInfoAsString = localStorage.getItem('USER_INFO');

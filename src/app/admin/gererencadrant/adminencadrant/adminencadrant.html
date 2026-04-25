@@ -1,0 +1,44 @@
+<h2>Gestion des enseignants</h2>
+
+<!-- Ajouter -->
+<div class="form">
+  <input [(ngModel)]="newEncadrant.nom" placeholder="Nom">
+  <input [(ngModel)]="newEncadrant.prenom" placeholder="Prénom">
+  <input [(ngModel)]="newEncadrant.email" placeholder="Email">
+  <input [(ngModel)]="newEncadrant.grade" placeholder="Grade">
+  <input [(ngModel)]="newEncadrant.departement" placeholder="Département">
+  <button (click)="add()">➕ Ajouter</button>
+</div>
+
+<!-- Liste -->
+<table>
+  <tr>
+    <th>Nom</th>
+    <th>Email</th>
+    <th>Grade</th>
+    <th>Département</th>
+    <th>Actions</th>
+  </tr>@for (e of encadrants; track $index) {
+  <tr >
+    <td>{{ e.nom }} {{ e.prenom }}</td>
+    <td>{{ e.email }}</td>
+    <td>{{ e.grade }}</td>
+    <td>{{ e.departement }}</td>
+    <td>
+      <button (click)="edit(e)">✏️</button>
+      <button (click)="delete(e.id)">🗑️</button>
+    </td>
+  </tr>}
+</table>
+
+<!-- Modifier -->
+ @if(editEncadrant){
+<div  class="modal">
+  <h3>Modifier enseignant</h3>
+  <input [(ngModel)]="editEncadrant.nom">
+  <input [(ngModel)]="editEncadrant.prenom">
+  <input [(ngModel)]="editEncadrant.grade">
+  <input [(ngModel)]="editEncadrant.departement">
+  <button (click)="save()">✅ Enregistrer</button>
+  <button (click)="editEncadrant=null">❌ Annuler</button>
+</div>}
