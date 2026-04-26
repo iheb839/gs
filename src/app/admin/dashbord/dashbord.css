@@ -1,0 +1,15 @@
+.card {
+  display: flex; /* Active Flexbox */
+  align-items: center; /* Centre verticalement */
+  justify-content: space-between; /* Espace entre l'icône et le texte */
+}
+
+.icon-wrapper {
+  font-size: 2.5rem;
+  opacity: 0.8;
+}
+
+/* Variantes de couleurs pour l'icône si vous voulez qu'elle soit colorée */
+.blue .icon-wrapper { color: #3498db; }
+.green .icon-wrapper { color: #2ecc71; }
+/* etc... */

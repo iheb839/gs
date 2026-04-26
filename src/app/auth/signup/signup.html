@@ -1,0 +1,18 @@
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Créer un compte étudiant</h2>
+  <form (ngSubmit)="signup()">
+    <input class="form-control mb-2" placeholder="Prénom" [(ngModel)]="userData.prenom" name="prenom" required>
+    <input class="form-control mb-2" placeholder="Nom" [(ngModel)]="userData.nom" name="nom" required>
+    <input class="form-control mb-2" placeholder="Email" [(ngModel)]="userData.email" name="email" required type="email">
+    <input class="form-control mb-2" placeholder="Mot de passe" [(ngModel)]="userData.password" name="password" required type="password">
+    <select class="form-select mb-2" [(ngModel)]="userData.genre" name="genre" required>
+      <option value="">--Choisir le genre--</option>
+      <option value="HOMME">Homme</option>
+      <option value="FEMME">Femme</option>
+    </select>
+    <input class="form-control mb-2" placeholder="Téléphone" [(ngModel)]="userData.tel" name="tel">
+    <input class="form-control mb-2" placeholder="Date de naissance" [(ngModel)]="userData.dateN" name="dateN" type="date">
+    <input class="form-control mb-2" placeholder="Département" [(ngModel)]="userData.departement" name="departement">
+    <button class="btn btn-primary w-100" type="submit">S'inscrire</button>
+  </form>
+</div>

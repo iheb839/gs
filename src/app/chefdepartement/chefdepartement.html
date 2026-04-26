@@ -1,0 +1,82 @@
+<!-- chef-departement.component.html -->
+
+<div class="container">
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <h2>👨‍💼 Espace Chef Département</h2>
+    <button class="logout">Déconnexion</button>
+  </nav>
+
+  <!-- Infos chef -->
+  <div class="card profile">
+    <h3>Informations</h3>
+    <p><strong>Nom :</strong> Dr. Ahmed Ben Salah</p>
+    <p><strong>Email :</strong> chef@univ.tn</p>
+    <p><strong>Département :</strong> Informatique</p>
+  </div>
+
+  <!-- Statistiques -->
+  <div class="stats">
+    <div class="stat-card">
+      <h4>Étudiants</h4>
+      <p>120</p>
+    </div>
+
+    <div class="stat-card">
+      <h4>Encadrants</h4>
+      <p>15</p>
+    </div>
+
+    <div class="stat-card">
+      <h4>Soutenances</h4>
+      <p>35</p>
+    </div>
+  </div>
+
+  <!-- Liste des soutenances -->
+  <div class="card">
+    <h3>Planning des soutenances</h3>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Étudiant</th>
+          <th>Sujet</th>
+          <th>Date</th>
+          <th>Salle</th>
+          <th>Jury</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>Ahmed Ben Ali</td>
+          <td>Application Web</td>
+          <td>20/06/2026</td>
+          <td>A1</td>
+          <td>3 membres</td>
+        </tr>
+
+        <tr>
+          <td>Sara Khaled</td>
+          <td>IA Project</td>
+          <td>21/06/2026</td>
+          <td>B2</td>
+          <td>3 membres</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Gestion -->
+  <div class="card">
+    <h3>Gestion</h3>
+
+    <button class="btn">Gérer Étudiants</button>
+    <button class="btn">Gérer Encadrants</button>
+    <button class="btn">Gérer Salles</button>
+    <button class="btn">Planifier Soutenances</button>
+  </div>
+
+</div>

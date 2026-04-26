@@ -1,0 +1,118 @@
+/* encadrant.component.css */
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f6f9;
+}
+
+.container {
+  width: 90%;
+  margin: auto;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #34495e;
+  color: white;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 10px;
+}
+
+.logout {
+  background: red;
+  border: none;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Cards */
+.card {
+  background: white;
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* Profile */
+.profile {
+  border-left: 5px solid #2ecc71;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+table th, table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+/* Buttons */
+.accept {
+  background: green;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.refuse {
+  background: red;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 8px;
+  background: #ecf0f1;
+  margin-top: 5px;
+  border-radius: 5px;
+}
+/* Table déjà موجودة */
+
+.encadrant {
+  color: white;
+  background: #3498db;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.rapporteur {
+  color: white;
+  background: #f39c12;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.president {
+  color: white;
+  background: #2ecc71;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}

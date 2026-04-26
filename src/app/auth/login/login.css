@@ -1,0 +1,107 @@
+/* --- Wrapper Global --- */
+.login-wrapper {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  padding: 20px;
+}
+
+/* --- Carte de Connexion --- */
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 20px;
+  background: #ffffff;
+  position: relative;
+  animation: slideUpFade 0.6s ease-out;
+}
+
+/* Barre colorée en haut de la carte */
+.card-header-custom {
+  height: 6px;
+  background: linear-gradient(90deg, #0d6efd 0%, #0dcaf0 100%);
+  width: 100%;
+}
+
+/* --- Logo / Titre --- */
+.logo-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #e7f1ff;
+  color: #0d6efd;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.logo-icon {
+  font-size: 32px !important;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+/* --- Inputs Modernes --- */
+.input-group-text {
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding-left: 1rem;
+}
+
+.input-group .form-control {
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  padding: 0.8rem 1rem;
+  box-shadow: none !important;
+  font-size: 0.95rem;
+}
+
+/* Focus sur l'input Group */
+.input-group:focus-within {
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+
+.input-group:focus-within .input-group-text {
+  background-color: #fff;
+}
+
+/* --- Bouton Personnalisé --- */
+.btn-primary-custom {
+  background-color: #0d6efd;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.btn-primary-custom:hover {
+  background-color: #0b5ed7;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(13, 110, 253, 0.3);
+}
+
+.btn-primary-custom:active {
+  transform: translateY(0);
+}
+
+/* --- Liens --- */
+.hover-primary {
+  transition: color 0.2s;
+}
+
+.hover-primary:hover {
+  color: #0d6efd !important;
+  text-decoration: underline;
+}
+@keyframes slideUpFade {  
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

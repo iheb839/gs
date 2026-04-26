@@ -1,0 +1,23 @@
+@if (etudiant) {
+  <div class="modal">
+    <h3>Modifier Étudiant</h3>
+
+    <input [(ngModel)]="etudiant.nom" placeholder="Nom">
+    <input [(ngModel)]="etudiant.prenom" placeholder="Prénom">
+    <input [(ngModel)]="etudiant.email" placeholder="Email">
+
+    <select [(ngModel)]="etudiant.genre">
+      <option value="HOMME">HOMME</option>
+      <option value="FEMME">FEMME</option>
+    </select>
+
+    <input [(ngModel)]="etudiant.tel" placeholder="Téléphone">
+    <input type="date" [(ngModel)]="etudiant.dateN">
+
+    <input [(ngModel)]="etudiant.departement" placeholder="Département">
+    <input [(ngModel)]="etudiant.matricule" placeholder="Matricule">
+
+    <button (click)="save()">✅ Enregistrer</button>
+    <button (click)="cancel()">❌ Annuler</button>
+  </div>
+}

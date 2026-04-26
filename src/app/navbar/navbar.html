@@ -1,0 +1,47 @@
+@if(isLoggedInUser()){
+<nav  class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">SoutenanceApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSoutenance"
+      aria-controls="navbarSoutenance" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSoutenance">
+      <ul class="navbar-nav me-auto">
+        <!-- Liens pour tous les utilisateurs connectés -->
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/projets">Gestion Projets</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminchefdepartement">Gérer Chef Département</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/adminencadrant">Enseignants</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/Listetudiant">Gérer Etudiants</a>
+        </li>
+
+        <!-- Liens seulement pour l'admin -->
+         @if(isAdmin()){
+        <li class="nav-item" >
+          <a class="nav-link" routerLink="/dashbord">Dashboard Admin</a>
+        </li>}
+      </ul>
+
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer" >
+            <mat-icon style="color: #fff;">person</mat-icon>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link cursor-pointer" (click)="logout()">
+            <mat-icon style="color: #fff;">logout</mat-icon>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>}
