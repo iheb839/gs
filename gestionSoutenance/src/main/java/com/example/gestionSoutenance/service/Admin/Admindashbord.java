@@ -3,8 +3,10 @@ package com.example.gestionSoutenance.service.Admin;
 
 import com.example.gestionSoutenance.dto.*;
 
+import com.example.gestionSoutenance.entity.ChefD;
 import com.example.gestionSoutenance.entity.Encadrant;
 import com.example.gestionSoutenance.enums.Role;
+import com.example.gestionSoutenance.mapper.ChefDepartementMapper;
 import com.example.gestionSoutenance.mapper.DepartementMapper;
 import com.example.gestionSoutenance.mapper.EncadrantMapper;
 import com.example.gestionSoutenance.mapper.UtilisateurMapper;
@@ -16,7 +18,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.*;
 import java.util.stream.Collectors;
-
 @Service
 @RequiredArgsConstructor
 public class Admindashbord {
@@ -33,7 +34,7 @@ public class Admindashbord {
         stats.put("totalUsers", utilisateurRepository.count());
         stats.put("totalEtudiants", utilisateurRepository.countByRole(Role.ETUDIANT));
         stats.put("totalEnseignants", utilisateurRepository.countByRole(Role.ENCADRANT));
-        stats.put("totalChefs", utilisateurRepository.countByRole(Role.CHEF));
+        stats.put("totalChefs", utilisateurRepository.countByRole(Role.AGENT));
         stats.put("totalSoutenances", soutenanceRepository.count());
 
         return stats;
@@ -44,8 +45,6 @@ public class Admindashbord {
                 .map(UtilisateurMapper::toDTO)
                 .collect(Collectors.toList());
     }
-
-    // ================= Étudiants =================
 
     public List<UtilisateurDto> getAllEtudiants() {
         return utilisateurRepository.findByRole(Role.ETUDIANT)
@@ -63,17 +62,12 @@ public class Admindashbord {
                 .collect(Collectors.toList());
     }
 
-    // ================= Chefs =================
-
-    public List<UtilisateurDto> getAllChefs() {
-        return utilisateurRepository.findByRole(Role.CHEF)
+    public List<ChefDdto> getAllChefs() {
+        return utilisateurRepository.findByRole(Role.AGENT)
                 .stream()
-                .map(UtilisateurMapper::toDTO)
+                .map(u -> ChefDepartementMapper.toDto((ChefD) u))
                 .collect(Collectors.toList());
     }
-
-    // ================= Départements =================
-
     public List<DepartementDto> getAllDepartements() {
         return departementRepository.findAll()
                 .stream()

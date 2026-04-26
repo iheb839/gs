@@ -32,6 +32,7 @@ public class SecurityConfig {
                                 "/api/dashboard/**",
                                 "/api/dashboard/all-users-stats",
                                 "/auth/register-first-admin",
+                                "/admin/**",
                                 "/pass/**",
                                 "/v3/api-docs/**").permitAll()
                         .anyRequest().authenticated()
@@ -47,7 +48,7 @@ public class SecurityConfig {
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
         config.setAllowedOriginPatterns(List.of("*"));
-        config.setAllowedOrigins(List.of("http://localhost:8081"));
+        config.setAllowedOrigins(List.of("http://localhost:8082"));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);

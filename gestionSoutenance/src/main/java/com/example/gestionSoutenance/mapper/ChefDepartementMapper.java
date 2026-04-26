@@ -2,13 +2,11 @@ package com.example.gestionSoutenance.mapper;
 
 
 import com.example.gestionSoutenance.dto.ChefDdto;
-import com.example.gestionSoutenance.dto.UtilisateurDto;
 import com.example.gestionSoutenance.entity.ChefD;
 import com.example.gestionSoutenance.enums.Role;
 
 public class ChefDepartementMapper {
 
-    // ================= ENTITY -> DTO =================
     public static ChefDdto toDto(ChefD chef) {
         if (chef == null) return null;
 
@@ -26,7 +24,6 @@ public class ChefDepartementMapper {
         return dto;
     }
 
-    // ================= DTO -> ENTITY =================
     public static ChefD toEntity(ChefDdto dto) {
         if (dto == null) return null;
 

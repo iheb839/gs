@@ -31,9 +31,14 @@ public class AdminEncadrantController {
     public EncadrantDto update(@PathVariable Long id, @RequestBody EncadrantDto dto) {
         return encadrantService.updateEncadrant(id, dto);
     }
+    @GetMapping("/find/{id}")
+    public EncadrantDto getById(@PathVariable Long id) {
+        return encadrantService.getEncadrantById(id);
+    }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable Long id) {
         encadrantService.deleteEncadrant(id);
     }
+
 }

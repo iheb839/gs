@@ -4,5 +4,5 @@ public enum Role {
     ADMIN,
     ENCADRANT,
     AGENT,
-    ETUDIANT,CHEF
+    ETUDIANT
 }

@@ -8,16 +8,18 @@ import com.example.gestionSoutenance.enums.Role;
 import com.example.gestionSoutenance.mapper.ChefDepartementMapper;
 import com.example.gestionSoutenance.repository.ChefDepartementRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class ChefDepartementService {
+    private final PasswordEncoder passwordEncoder;
 
     private final ChefDepartementRepository chefRepo;
 
-    // ✅ Liste des chefs
     public List<ChefDdto> getAllChefs() {
         return chefRepo.findAll()
                 .stream()
@@ -25,19 +27,20 @@ public class ChefDepartementService {
                 .collect(Collectors.toList());
     }
 
-    // ✅ Ajouter chef
     public ChefDdto createChef(ChefDdto dto) {
 
-        // Règle métier: Chef واحد فقط لكل département
         if (chefRepo.existsByDepartement(dto.getDepartement())) {
             throw new RuntimeException("Ce département a déjà un chef");
         }
-        dto.setRole(Role.AGENT);
-        ChefD chef =  ChefDepartementMapper.toEntity(dto);
+
+        ChefD chef = ChefDepartementMapper.toEntity(dto);
+
+        chef.setRole(Role.AGENT);
+        chef.setPassword(passwordEncoder.encode(dto.getPassword()));
+
         return ChefDepartementMapper.toDto(chefRepo.save(chef));
     }
 
-    // ✅ Modifier chef
     public ChefDdto updateChef(Long id, ChefDdto dto) {
 
         ChefD chef = chefRepo.findById(Math.toIntExact(id))
@@ -51,8 +54,12 @@ public class ChefDepartementService {
         return ChefDepartementMapper.toDto(chefRepo.save(chef));
     }
 
-    // ✅ Supprimer chef
     public void deleteChef(Long id) {
         chefRepo.deleteById(Math.toIntExact(id));
     }
+
+    public Optional<ChefD> getChef(Long id) {
+       return chefRepo.findById(Math.toIntExact(id));
+    }
+    
 }

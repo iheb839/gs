@@ -17,6 +17,7 @@ public class UtilisateurDto {
     private Date dateN;
     private String departement;
     private String email;
+    private String password;
     private Role role;
 }
 

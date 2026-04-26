@@ -7,13 +7,11 @@ public class JuryMapper {
 
     public static JuryDto toDTO(Jury j) {
         if (j == null) return null;
-
         JuryDto dto = new JuryDto();
         dto.setIdJury(j.getIdJury());
         dto.setNom(j.getNom());
         dto.setGrade(j.getGrade());
         dto.setSpecialite(j.getSpecialite());
-
         return dto;
     }
 }
